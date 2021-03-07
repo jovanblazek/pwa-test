@@ -1,0 +1,165 @@
+@import "variables";
+@import "common";
+
+body {background-color: #fff; color: #000;}
+
+.loginWrapper
+{
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+
+    form
+    {
+        margin-top: 2em;
+        .loginError
+        {
+            color: $wErrorColor;
+        }
+        .input-div
+        {
+            margin-bottom: 1em;
+
+            .input-label
+            {
+                margin: 0.5em 0;
+                text-transform: uppercase;
+                font-size: 14px;
+                color: $wSecondaryColor;
+                letter-spacing: 1.2px;
+            }
+            input[type=text], input[type=password]
+            {
+                width: 100%;
+                background-color: inherit;
+                border-bottom: 1px rgba(51,51,51,0.15) solid;
+                padding: 5px 0;
+                &:focus
+                {
+                    border-bottom: 1px $wAccentColor solid;
+                }
+            }
+            input[type=password]
+            {
+                padding-right: 30px;
+            }
+            .login-password-icon
+            {
+                display: none;
+                position: relative;
+                z-index: 2;
+                left: -30px;
+                color: $wPrimaryColor;
+            }
+            .login-btn
+            {
+                font-family: 'Roboto', sans-serif;
+                width: 100%;
+                margin-top: 1em;
+                padding: 16px;
+                cursor: pointer;
+                font-weight: 500;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                color: #f7f7f7;
+                background-color: $wAccentColor;
+                border-radius: 5px;
+                box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+            }
+        }
+        .registerWrapper
+        {
+            text-align: center;
+            margin-top: 1.5em;
+            text-transform: none;
+            .registerLink
+            {
+                text-transform: none;
+            }
+        }
+    }
+}
+
+.navbarWrapper
+{
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    color: $wPrimaryColor;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
+    .navbar-link
+    {
+        display: flex;
+        align-items: center;
+        height: 60px;
+        &:hover
+        {
+            background-color: #eee;
+        }
+
+        .navbar-icon
+        {
+            font-size: 30px;
+            margin: 0 auto; 
+        }
+        &:nth-child(2) .navbar-icon
+        {
+            color: $wAccentColor;
+        }
+    }
+
+    .active
+    {
+        box-shadow: inset 0px -57px 0px -55px $wAccentColor;
+    }
+    
+}
+
+.topBar
+{
+    margin: 1em 15px;
+    height: 30px;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 1fr 80% 1fr;
+    a
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .searchForm
+    {
+        #searchBar //&#xe8b6;
+        {
+            width: 100%;
+            height: 30px;
+            background-color: $wSecondaryBgColor;
+            border-radius: 5px;
+            padding: 20px;
+            font-family: FontAwesome, 'Inter', sans-serif;
+            font-size: 18px;
+        }
+    }
+}
+
+.siteWrapper
+{
+    //max-width: 1400px; PC
+    margin: 0 15px;
+}
