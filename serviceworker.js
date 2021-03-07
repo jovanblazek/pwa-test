@@ -18,9 +18,9 @@ self.addEventListener('install', (event) => {
 // Listen for requests
 self.addEventListener('fetch', (event) => {
     event.respondWith(
-        caches.match(event.request)
+        caches.match(event.request.url)
             .then(() => {
-                return fetch(event.request) 
+                return fetch(event.request.url) 
                     .catch(() => caches.match('noInternet.html'))
             })
     )
