@@ -35,16 +35,6 @@
         <h3>Bez pripojenia k internetu</h3>
         <a href="https://elitehub.eu">Domov</a>
     </div>
-
-    <script>
-		if ('serviceWorker' in navigator) {
-				window.addEventListener('load', () => {
-					navigator.serviceWorker.register('/serviceworker.js')
-					.then((reg) => console.log("success: ", reg.scope))
-					.catch((err) => console.log("zle je: ", err))
-				})
-			}
-	</script>
 </body>
 
 </html>
