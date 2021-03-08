@@ -46,7 +46,7 @@ self.addEventListener('activate', (event) => {
 */
 
 // This is the "Offline page" service worker
-
+/*
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js");
 
 const CACHE = "pwabuilder-page";
@@ -87,6 +87,32 @@ self.addEventListener("fetch", (event) => {
 					return cachedResp;
 				}
 			})()
+		);
+	}
+});
+*/
+
+self.addEventListener("install", function (event) {
+	var offlineRequest = new Request("noInternet.html");
+	event.waitUntil(
+		fetch(offlineRequest).then(function (response) {
+			return caches.open("offline").then(function (cache) {
+				console.log("[oninstall] Cached offline page", response.url);
+				return cache.put(offlineRequest, response);
+			});
+		})
+	);
+});
+self.addEventListener("fetch", function (event) {
+	var request = event.request;
+	if (request.method === "GET") {
+		event.respondWith(
+			fetch(request).catch(function (error) {
+				console.error("[onfetch] Failed. Serving cached offline fallback " + error);
+				return caches.open("offline").then(function (cache) {
+					return cache.match("noInternet.html");
+				});
+			})
 		);
 	}
 });
