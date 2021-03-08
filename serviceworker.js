@@ -92,27 +92,40 @@ self.addEventListener("fetch", (event) => {
 });
 */
 
+/* global self, caches, URL, fetch */
+var TO_CACHE = ["/noInternet.html", "/images/404_orange.png"];
+var FALLBACKS = { "/": "/noInternet.html" };
+var CACHE_NAME = "assets-cache-v1";
+
 self.addEventListener("install", function (event) {
-	var offlineRequest = new Request("noInternet.html");
+	// Perform install steps
 	event.waitUntil(
-		fetch(offlineRequest).then(function (response) {
-			return caches.open("offline").then(function (cache) {
-				console.log("[oninstall] Cached offline page", response.url);
-				return cache.put(offlineRequest, response);
-			});
+		caches.open(CACHE_NAME).then(function (cache) {
+			return cache.addAll(TO_CACHE);
 		})
 	);
 });
+
 self.addEventListener("fetch", function (event) {
-	var request = event.request;
-	if (request.method === "GET") {
-		event.respondWith(
-			fetch(request).catch(function (error) {
-				console.error("[onfetch] Failed. Serving cached offline fallback " + error);
-				return caches.open("offline").then(function (cache) {
-					return cache.match("noInternet.html");
-				});
-			})
-		);
-	}
+	event.respondWith(
+		caches.match(event.request).then(function (response) {
+			var pathname = new URL(event.request.url).pathname;
+
+			if (response) {
+				console.log("serving from cache: ", pathname);
+				return response;
+			}
+
+			var fallbackUrl = FALLBACKS[pathname];
+			if (fallbackUrl) {
+				console.log("serving fallback: ", pathname);
+				return caches.match(fallbackUrl);
+			}
+
+			if (true) {
+				// fetch from server
+				return fetch(event.request);
+			}
+		})
+	);
 });
