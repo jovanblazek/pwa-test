@@ -1,6 +1,6 @@
 /*
 const CACHE_NAME = "version-1";
-const urlsToCache = [ '/noInternet.html', '/css/style.css', '/images/404_orange.png'];
+const urlsToCache = [ '/noInternet.html', '/css/style.css', '/images/404_orange.png', '/site.webmanifest'];
 
 const self = this;
 
@@ -43,8 +43,8 @@ self.addEventListener('activate', (event) => {
             
     )
 });
-*/
 
+*/
 // This is the "Offline page" service worker
 /*
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js");
@@ -93,6 +93,7 @@ self.addEventListener("fetch", (event) => {
 */
 
 /* global self, caches, URL, fetch */
+/*
 var TO_CACHE = ["/noInternet.html", "/images/404_orange.png"];
 var FALLBACKS = { "/index.html": "/noInternet.html" };
 var CACHE_NAME = "assets-cache-v1";
@@ -126,6 +127,26 @@ self.addEventListener("fetch", function (event) {
 				// fetch from server
 				return fetch(event.request);
 			}
+		})
+	);
+});
+*/
+
+const CACHE_NAME = "ehub-pwa-v1";
+const assets = ["/", "/index.html", "/css/style.css", "/noInternet.html", "/images/404_orange.png"];
+
+self.addEventListener("install", (installEvent) => {
+	installEvent.waitUntil(
+		caches.open(CACHE_NAME).then((cache) => {
+			cache.addAll(assets);
+		})
+	);
+});
+
+self.addEventListener("fetch", (fetchEvent) => {
+	fetchEvent.respondWith(
+		caches.match(fetchEvent.request).then((res) => {
+			return res || fetch(fetchEvent.request);
 		})
 	);
 });
