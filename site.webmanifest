@@ -57,8 +57,9 @@
             "purpose": "maskable any"
         }
     ],
-    "start_url": "/index.php",
+    "start_url": "/index.html",
     "theme_color": "#ffa500",
     "background_color": "#ffa500",
-    "display": "standalone"
+    "display": "standalone",
+    "orientation": "portrait-primary"
 }
