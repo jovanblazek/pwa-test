@@ -53,7 +53,7 @@ const CACHE = "pwabuilder-page";
 
 // TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = "offline.html";
 const offlineFallbackPage = "noInternet.html";
-const urlsToCache = ['/noInternet.html', '/css/style.css', '/images/404_orange.png'];
+//const urlsToCache = ['/noInternet.html', '/css/style.css', '/images/404_orange.png'];
 
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
@@ -65,7 +65,7 @@ self.addEventListener("message", (event) => {
 self.addEventListener('install', async (event) => {
   event.waitUntil(
     caches.open(CACHE)
-      .then((cache) => cache.addAll(urlsToCache)) //cache.add(offlineFallbackPage)
+      .then((cache) => cache.add(offlineFallbackPage))
   );
 });
 
