@@ -94,7 +94,7 @@ self.addEventListener("fetch", (event) => {
 
 /* global self, caches, URL, fetch */
 var TO_CACHE = ["/noInternet.html", "/images/404_orange.png"];
-var FALLBACKS = { "/": "/noInternet.html" };
+var FALLBACKS = { "/index.html": "/noInternet.html" };
 var CACHE_NAME = "assets-cache-v1";
 
 self.addEventListener("install", function (event) {
