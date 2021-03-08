@@ -1,5 +1,5 @@
 const CACHE_NAME = "version-1";
-const urlsToCache = [ '/index.html' , '/noInternet.html', '/css/style.css', '/images/404_orange.png'];
+const urlsToCache = [ '/noInternet.html', '/css/style.css', '/images/404_orange.png'];
 
 const self = this;
 
