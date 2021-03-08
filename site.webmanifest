@@ -57,7 +57,7 @@
             "purpose": "maskable any"
         }
     ],
-    "start_url": "https://trusting-shockley-b9d043.netlify.app",
+    "start_url": "/",
     "theme_color": "#ffa500",
     "background_color": "#ffa500",
     "display": "standalone",
