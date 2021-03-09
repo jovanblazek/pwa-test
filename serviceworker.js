@@ -135,6 +135,7 @@ self.addEventListener("fetch", function (event) {
 const CACHE_NAME = "ehub-pwa-v1";
 //const assets = ["/", "/index.html", "/css/style.css", "/noInternet.html", "/images/404_orange.png"];
 const assets = [
+	"/",
 	"/css/style.css", 
 	"/noInternet.html", 
 	"/images/404_orange.png",
@@ -156,7 +157,7 @@ self.addEventListener("install", (event) => {
 	);
 });
 
-this.addEventListener("fetch", (event) => {
+self.addEventListener("fetch", (event) => {
 	// request.mode = navigate isn't supported in all browsers
 	// so include a check for Accept: text/html header.
 	if (
