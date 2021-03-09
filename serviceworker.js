@@ -206,7 +206,7 @@ self.addEventListener('activate', (event) => {
 
 const CACHE_NAME = "ehub-pwa-v1";
 const assets = ["/", "/index.html", "/css/style.css", "/noInternet.html", "/images/404_orange.png"];
-const OFFLINE_URL = "noInternet.html";
+const OFFLINE_URL = "/noInternet.html";
 
 self.addEventListener("install", (installEvent) => {
 	installEvent.waitUntil(
@@ -225,8 +225,9 @@ self.addEventListener("fetch", (fetchEvent) => {
 	);*/
 
 	fetchEvent.respondWith(
-		fetch(fetchEvent.request.url).catch((error) => {
+		fetch(fetchEvent.request).catch((error) => {
 			// Return the offline page
+			console.log("offline pls "+ error);
 			return caches.match(OFFLINE_URL);
 		})
 	);
