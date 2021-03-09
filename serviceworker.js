@@ -133,6 +133,31 @@ self.addEventListener("fetch", function (event) {
 */
 
 const CACHE_NAME = "ehub-pwa-v1";
+//const assets = ["/", "/index.html", "/css/style.css", "/noInternet.html", "/images/404_orange.png"];
+const assets = ["/css/style.css", "/noInternet.html", "/images/404_orange.png"];
+
+self.addEventListener("install", (installEvent) => {
+	installEvent.waitUntil(
+		caches.open(CACHE_NAME).then((cache) => {
+			cache.addAll(assets);
+		})
+	);
+});
+
+self.addEventListener("fetch", (fetchEvent) => {
+	fetchEvent.respondWith(
+		fetch(fetchEvent.request).catch(() => caches.match('/noInternet.html'))
+		/*
+		caches.match(fetchEvent.request).then((res) => {
+			return res || fetch(fetchEvent.request);
+		})*/
+	);
+});
+
+
+/*	WORKING
+
+const CACHE_NAME = "ehub-pwa-v1";
 const assets = ["/", "/index.html", "/css/style.css", "/noInternet.html", "/images/404_orange.png"];
 
 self.addEventListener("install", (installEvent) => {
@@ -150,3 +175,4 @@ self.addEventListener("fetch", (fetchEvent) => {
 		})
 	);
 });
+*/
