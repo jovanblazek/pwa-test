@@ -132,6 +132,8 @@ self.addEventListener("fetch", function (event) {
 });
 */
 
+/*
+
 const CACHE_NAME = "ehub-pwa-v1";
 //const assets = ["/", "/index.html", "/css/style.css", "/noInternet.html", "/images/404_orange.png"];
 const assets = [
@@ -198,7 +200,9 @@ self.addEventListener('activate', (event) => {
     )
 });
 
-/*	WORKING
+*/
+
+/*	WORKING */
 
 const CACHE_NAME = "ehub-pwa-v1";
 const assets = ["/", "/index.html", "/css/style.css", "/noInternet.html", "/images/404_orange.png"];
@@ -218,4 +222,4 @@ self.addEventListener("fetch", (fetchEvent) => {
 		})
 	);
 });
-*/
+
